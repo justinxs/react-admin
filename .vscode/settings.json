@@ -1,0 +1,12 @@
+{
+  "stylelint.enable": true,
+  // 开启stylelint自动修复
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": true
+  },
+  // 配置stylelint检查的文件类型范围
+  "stylelint.validate": ["css", "less", "postcss", "scss", "sass"],
+  "files.eol": "\n",
+  // 一个制表符等于的空格数。在 `editor.detectIndentation` 启用时，根据文件内容，该设置可能会被覆盖。
+  "editor.tabSize": 2
+}
