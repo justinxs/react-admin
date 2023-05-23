@@ -10,8 +10,11 @@ import useTheme from '@/hooks/useTheme';
 import zhCN from 'antd/lib/locale/zh_CN';
 import enUS from 'antd/lib/locale/en_US';
 import i18n from 'i18next';
-import 'moment/dist/locale/zh-cn';
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-cn';
 import StaticAction from './staticAction';
+
+dayjs.locale('zh-cn');
 
 const App = (props: any) => {
 	const { language, assemblySize, themeConfig, setLanguage } = props;
@@ -38,7 +41,11 @@ const App = (props: any) => {
 
 	return (
 		<HashRouter>
-			<ConfigProvider locale={i18nLocale} componentSize={assemblySize} theme={{ algorithm: theme.defaultAlgorithm }}>
+			<ConfigProvider
+				locale={i18nLocale}
+				componentSize={assemblySize}
+				theme={{ algorithm: themeConfig.isDark ? theme.darkAlgorithm : theme.defaultAlgorithm }}
+			>
 				<AntApp style={{ height: '100%' }}>
 					<AuthRouter>
 						<Router />

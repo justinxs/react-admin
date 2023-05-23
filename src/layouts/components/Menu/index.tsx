@@ -24,7 +24,7 @@ const LayoutMenu = (props: any) => {
 		if (!isCollapse) {
 			const keys = getOpenKeys(pathname);
 			// 菜单展开动画结束后再设置 SubMenu 菜单项展开，避免动画过程闪屏
-			setTimeout(() => setOpenKeys(keys), 300);
+			setTimeout(() => setOpenKeys(keys), 200);
 		}
 	}, [pathname, isCollapse]);
 

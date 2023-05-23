@@ -1,4 +1,4 @@
-import { defineConfig, loadEnv, ConfigEnv, UserConfig } from 'vite';
+import { defineConfig, loadEnv, ConfigEnv, UserConfig, type PluginOption } from 'vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 import { wrapperEnv } from './src/utils/getEnv';
@@ -67,7 +67,7 @@ export default defineConfig((mode: ConfigEnv): UserConfig => {
 			// * EsLint 报错信息显示在浏览器界面上
 			// eslintPlugin(),
 			// * 是否生成包预览
-			viteEnv.VITE_REPORT && visualizer(),
+			viteEnv.VITE_REPORT && (visualizer() as PluginOption),
 			// * gzip compress
 			viteEnv.VITE_BUILD_GZIP &&
 				viteCompression({
