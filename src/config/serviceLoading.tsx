@@ -19,6 +19,6 @@ export const tryHideFullScreenLoading = () => {
 	if (needLoadingRequestCount <= 0) return;
 	needLoadingRequestCount--;
 	if (needLoadingRequestCount === 0) {
-		document.body.removeChild(document.getElementById('loading') as HTMLElement);
+		document.body.removeChild(document.getElementById('loading')!);
 	}
 };
