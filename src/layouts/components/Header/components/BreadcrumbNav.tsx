@@ -1,12 +1,12 @@
 import { Breadcrumb } from 'antd';
 import { useLocation, Link } from 'react-router-dom';
 import { HOME_URL } from '@/config/config';
-import { connect } from 'react-redux';
+import { useAppSelector } from '@/redux';
 
-const BreadcrumbNav = (props: any) => {
+const BreadcrumbNav = () => {
 	const { pathname } = useLocation();
-	const { themeConfig } = props.global;
-	const breadcrumbList = props.breadcrumb.breadcrumbList[pathname] || [];
+	const breadcrumb = useAppSelector(state => state.global.themeConfig.breadcrumb);
+	const breadcrumbList = useAppSelector(state => state.breadcrumb.breadcrumbList[pathname] || []);
 
 	const breadcrumbItems = [
 		{
@@ -14,8 +14,7 @@ const BreadcrumbNav = (props: any) => {
 			key: 'home'
 		}
 	].concat(breadcrumbList.filter((title: string) => title !== '首页').map((title: string) => ({ key: title, title })));
-	return <>{!themeConfig.breadcrumb && <Breadcrumb items={breadcrumbItems}></Breadcrumb>}</>;
+	return <>{!breadcrumb && <Breadcrumb items={breadcrumbItems}></Breadcrumb>}</>;
 };
 
-const mapStateToProps = (state: any) => state;
-export default connect(mapStateToProps)(BreadcrumbNav);
+export default BreadcrumbNav;

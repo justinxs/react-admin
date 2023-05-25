@@ -1,6 +1,6 @@
-import { legacy_createStore as createStore, combineReducers, Store, compose } from 'redux';
+import { legacy_createStore as createStore, combineReducers, Store, compose, applyMiddleware } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
-import { applyMiddleware } from 'redux';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import storage from 'redux-persist/lib/storage';
 import reduxThunk from 'redux-thunk';
 import reduxPromise from 'redux-promise';
@@ -39,3 +39,11 @@ const store: Store = createStore(persistReducerConfig, composeEnhancers(middleWa
 const persistor = persistStore(store);
 
 export { store, persistor };
+
+// 从 store 本身推断 `RootState` 和 `AppDispatch` 类型
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+// 在整个应用程序中使用，而不是简单的 `useDispatch` 和 `useSelector`
+export const useAppDispatch: () => AppDispatch = useDispatch;
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
