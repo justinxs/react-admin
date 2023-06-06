@@ -1,25 +1,25 @@
 import { Drawer, Divider, Switch } from 'antd';
 import { useState } from 'react';
-import { connect } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '@/redux';
 import { FireOutlined, SettingOutlined } from '@ant-design/icons';
 import { setThemeConfig } from '@/redux/modules/global/action';
 import { updateCollapse } from '@/redux/modules/menu/action';
 import SwitchDark from '@/components/SwitchDark';
 
-const Theme = (props: any) => {
+const Theme = () => {
+	const isCollapse = useAppSelector(state => state.menu.isCollapse);
+	const themeConfig = useAppSelector(state => state.global.themeConfig);
+	const dispatch = useAppDispatch();
 	const [visible, setVisible] = useState<boolean>(false);
-	const { setThemeConfig, updateCollapse } = props;
-	const { isCollapse } = props.menu;
-	const { themeConfig } = props.global;
 	const { weakOrGray, breadcrumb, tabs, footer } = themeConfig;
 
 	const setWeakOrGray = (checked: boolean, theme: string) => {
-		if (checked) return setThemeConfig({ ...themeConfig, weakOrGray: theme });
-		setThemeConfig({ ...themeConfig, weakOrGray: '' });
+		if (checked) return dispatch(setThemeConfig({ ...themeConfig, weakOrGray: theme }));
+		dispatch(setThemeConfig({ ...themeConfig, weakOrGray: '' }));
 	};
 
 	const onChange = (checked: boolean, keyName: string) => {
-		return setThemeConfig({ ...themeConfig, [keyName]: !checked });
+		return dispatch(setThemeConfig({ ...themeConfig, [keyName]: !checked }));
 	};
 
 	return (
@@ -77,7 +77,7 @@ const Theme = (props: any) => {
 					<Switch
 						checked={isCollapse}
 						onChange={e => {
-							updateCollapse(e);
+							dispatch(updateCollapse(e));
 						}}
 					/>
 				</div>
@@ -113,6 +113,4 @@ const Theme = (props: any) => {
 	);
 };
 
-const mapStateToProps = (state: any) => state;
-const mapDispatchToProps = { setThemeConfig, updateCollapse };
-export default connect(mapStateToProps, mapDispatchToProps)(Theme);
+export default Theme;

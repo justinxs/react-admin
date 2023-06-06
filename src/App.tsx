@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getBrowserLang } from '@/utils/util';
 import { App as AntApp, ConfigProvider, theme } from 'antd';
-import { connect } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '@/redux';
 import { setLanguage } from '@/redux/modules/global/action';
 import { HashRouter } from 'react-router-dom';
 import AuthRouter from '@/routers/utils/authRouter';
@@ -13,8 +13,11 @@ import i18n from 'i18next';
 import 'dayjs/locale/zh-cn';
 import StaticAction from './staticAction';
 
-const App = (props: any) => {
-	const { language, assemblySize, themeConfig, setLanguage } = props;
+const App = () => {
+	const language = useAppSelector(state => state.global.language);
+	const assemblySize = useAppSelector(state => state.global.assemblySize);
+	const themeConfig = useAppSelector(state => state.global.themeConfig);
+	const dispatch = useAppDispatch();
 	const [i18nLocale, setI18nLocale] = useState(zhCN);
 
 	// 全局使用主题
@@ -32,7 +35,7 @@ const App = (props: any) => {
 	useEffect(() => {
 		// 全局使用国际化
 		i18n.changeLanguage(language || getBrowserLang());
-		setLanguage(language || getBrowserLang());
+		dispatch(setLanguage(language || getBrowserLang()));
 		setAntdLanguage();
 	}, [language]);
 
@@ -54,6 +57,4 @@ const App = (props: any) => {
 	);
 };
 
-const mapStateToProps = (state: any) => state.global;
-const mapDispatchToProps = { setLanguage };
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

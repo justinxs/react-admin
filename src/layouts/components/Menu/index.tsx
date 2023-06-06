@@ -6,7 +6,7 @@ import { setMenuList } from '@/redux/modules/menu/action';
 import { setBreadcrumbList } from '@/redux/modules/breadcrumb/action';
 import { setAuthRouter } from '@/redux/modules/auth/action';
 import { getMenuList } from '@/api/modules/login';
-import { connect } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '@/redux';
 import type { MenuProps } from 'antd';
 import * as Icons from '@ant-design/icons';
 import Logo from './components/Logo';
@@ -14,7 +14,8 @@ import './index.less';
 
 const LayoutMenu = (props: any) => {
 	const { pathname } = useLocation();
-	const { isCollapse, setBreadcrumbList, setAuthRouter, setMenuList: setMenuListAction } = props;
+	const isCollapse = useAppSelector(state => state.menu.isCollapse);
+	const dispatch = useAppDispatch();
 	const [selectedKeys, setSelectedKeys] = useState<string[]>([pathname]);
 	const [openKeys, setOpenKeys] = useState<string[]>([]);
 
@@ -65,20 +66,20 @@ const LayoutMenu = (props: any) => {
 	};
 
 	// 获取菜单列表并处理成 antd menu 需要的格式
-	const [menuList, setMenuList] = useState<MenuItem[]>([]);
+	const [menuList, setMenu] = useState<MenuItem[]>([]);
 	const [loading, setLoading] = useState(false);
 	const getMenuData = async () => {
 		setLoading(true);
 		try {
 			const { data } = await getMenuList();
 			if (!data) return;
-			setMenuList(deepLoopFloat(data));
+			setMenu(deepLoopFloat(data));
 			// 存储处理过后的所有面包屑导航栏到 redux 中
-			setBreadcrumbList(findAllBreadcrumb(data));
+			dispatch(setBreadcrumbList(findAllBreadcrumb(data)));
 			// 把路由菜单处理成一维数组，存储到 redux 中，做菜单权限判断
 			const dynamicRouter = handleRouter(data);
-			setAuthRouter(dynamicRouter);
-			setMenuListAction(data);
+			dispatch(setAuthRouter(dynamicRouter));
+			dispatch(setMenuList(data));
 		} finally {
 			setLoading(false);
 		}
@@ -114,6 +115,4 @@ const LayoutMenu = (props: any) => {
 	);
 };
 
-const mapStateToProps = (state: any) => state.menu;
-const mapDispatchToProps = { setMenuList, setBreadcrumbList, setAuthRouter };
-export default connect(mapStateToProps, mapDispatchToProps)(LayoutMenu);
+export default LayoutMenu;
