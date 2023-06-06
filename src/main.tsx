@@ -12,12 +12,12 @@ import { store, persistor } from '@/redux';
 import App from '@/App';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-	// 	// * react严格模式
-	// 	// <React.StrictMode>
+	// * react严格模式
+	// <React.StrictMode>
 	<Provider store={store}>
 		<PersistGate persistor={persistor}>
 			<App />
 		</PersistGate>
 	</Provider>
-	// 	// </React.StrictMode>
+	// </React.StrictMode>
 );
