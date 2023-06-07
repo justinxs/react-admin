@@ -1,6 +1,6 @@
 import { Switch } from 'antd';
-import { useAppSelector, useAppDispatch } from '@/redux';
-import { setThemeConfig } from '@/redux/modules/global/action';
+import { useAppSelector, useAppDispatch } from '@/redux/store';
+import { setThemeConfig } from '@/redux/slices/global';
 
 const SwitchDark = () => {
 	const themeConfig = useAppSelector(state => state.global.themeConfig);

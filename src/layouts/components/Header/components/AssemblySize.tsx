@@ -1,7 +1,7 @@
 import { Dropdown } from 'antd';
 import type { MenuProps } from 'antd';
-import { setAssemblySize } from '@/redux/modules/global/action';
-import { useAppSelector, useAppDispatch } from '@/redux';
+import { setAssemblySize } from '@/redux/slices/global';
+import { useAppSelector, useAppDispatch } from '@/redux/store';
 
 const AssemblySize = () => {
 	const assemblySize = useAppSelector(state => state.global.assemblySize);
@@ -9,7 +9,7 @@ const AssemblySize = () => {
 
 	// 切换组件大小
 	const onClick = (e: MenuInfo) => {
-		dispatch(setAssemblySize(e.key));
+		dispatch(setAssemblySize(e.key as 'large' | 'small' | 'middle'));
 	};
 	const items: MenuProps['items'] = [
 		{

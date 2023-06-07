@@ -1,5 +1,5 @@
 import logo from '@/assets/images/logo.png';
-import { useAppSelector } from '@/redux';
+import { useAppSelector } from '@/redux/store';
 
 const Logo = () => {
 	const isCollapse = useAppSelector(state => state.menu.isCollapse);

@@ -8,7 +8,7 @@ import '@/language/index';
 import 'virtual:svg-icons-register';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
-import { store, persistor } from '@/redux';
+import { store, persistor } from '@/redux/store';
 import App from '@/App';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

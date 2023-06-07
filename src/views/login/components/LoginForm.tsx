@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { Login } from '@/api/interface';
 import { loginApi } from '@/api/modules/login';
 import { HOME_URL } from '@/config/config';
-import { useAppDispatch } from '@/redux';
-import { setToken } from '@/redux/modules/global/action';
+import { useAppDispatch } from '@/redux/store';
+import { setToken } from '@/redux/slices/global';
 import { useTranslation } from 'react-i18next';
-import { setTabsList } from '@/redux/modules/tabs/action';
+import { setTabsList } from '@/redux/slices/tabs';
 import { UserOutlined, LockOutlined, CloseCircleOutlined } from '@ant-design/icons';
 import { message } from '@/staticAction';
 
