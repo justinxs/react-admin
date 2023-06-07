@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { getBrowserLang } from '@/utils/util';
 import { App as AntApp, ConfigProvider, theme } from 'antd';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
-import { setLanguage } from '@/redux/slices/global';
+import { setLanguage } from '@/redux/reducers/global';
 import { HashRouter } from 'react-router-dom';
 import AuthRouter from '@/routers/utils/authRouter';
 import Router from '@/routers/index';

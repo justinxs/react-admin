@@ -1,6 +1,6 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
-import { updateCollapse } from '@/redux/slices/menu';
+import { updateCollapse } from '@/redux/reducers/menu';
 
 const CollapseIcon = () => {
 	const isCollapse = useAppSelector(state => state.menu.isCollapse);

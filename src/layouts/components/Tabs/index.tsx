@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { HOME_URL } from '@/config/config';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
-import { setTabsList } from '@/redux/slices/tabs';
+import { setTabsList } from '@/redux/reducers/tabs';
 import { routerArray } from '@/routers';
 import { searchRoute } from '@/utils/util';
 import MoreButton from './components/MoreButton';

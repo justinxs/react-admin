@@ -1,6 +1,6 @@
 import { Dropdown } from 'antd';
 import type { MenuProps } from 'antd';
-import { setAssemblySize } from '@/redux/slices/global';
+import { setAssemblySize } from '@/redux/reducers/global';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
 
 const AssemblySize = () => {

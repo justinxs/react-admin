@@ -1,7 +1,7 @@
 import { Dropdown } from 'antd';
 import type { MenuProps } from 'antd';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
-import { setLanguage } from '@/redux/slices/global';
+import { setLanguage } from '@/redux/reducers/global';
 
 const Language = () => {
 	const language = useAppSelector(state => state.global.language);

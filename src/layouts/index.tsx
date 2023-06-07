@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Layout } from 'antd';
-import { setAuthButtons } from '@/redux/slices/auth';
-import { updateCollapse } from '@/redux/slices/menu';
+import { setAuthButtons } from '@/redux/reducers/auth';
+import { updateCollapse } from '@/redux/reducers/menu';
 import { getAuthorButtons } from '@/api/modules/login';
 import { useAppSelector, useAppDispatch } from '@/redux/store';
 import LayoutMenu from './components/Menu';

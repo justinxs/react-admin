@@ -4,11 +4,11 @@ import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import global from './slices/global';
-import auth from './slices/auth';
-import menu from './slices/menu';
-import tabs from './slices/tabs';
-import breadcrumb from './slices/breadcrumb';
+import global from './reducers/global';
+import auth from './reducers/auth';
+import menu from './reducers/menu';
+import tabs from './reducers/tabs';
+import breadcrumb from './reducers/breadcrumb';
 
 const rootReducer = combineReducers({
 	global,

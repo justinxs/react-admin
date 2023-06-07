@@ -5,7 +5,7 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { HOME_URL } from '@/config/config';
 import { useAppDispatch } from '@/redux/store';
-import { setToken } from '@/redux/slices/global';
+import { setToken } from '@/redux/reducers/global';
 import PasswordModal from './PasswordModal';
 import InfoModal from './InfoModal';
 import avatar from '@/assets/images/avatar.png';
